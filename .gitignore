@@ -1,6 +1,11 @@
+# Folder where we can put non important files
 ignore
+
+# remove all file created with latex that we don't want 
 *.aux
 *.fdb_latexmk
 *.fls
 *.log
 *.synctex.gz
+
+datas/Thumbs.db
