@@ -1,19 +1,42 @@
-\documentclass[12pt, openany]{report}
+\documentclass[openany]{report}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[a4paper,left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage[a4paper,left=2cm,right=2cm,top=2cm,bottom=2cm, headheight = 12pt]{geometry}
 \usepackage{libertine}
 \usepackage[pdftex]{graphicx}
+\usepackage{totpages}
 
 \usepackage{helvet}
 \renewcommand{\familydefault}{\sfdefault}
-\usepackage[french]{babel}
+\usepackage[english, french]{babel}
 
-\setlength{\parindent}{0cm}
-\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+\input{styles.tex}
 
 \begin{document}
+\selectlanguage{french}
 
 \include{page_de_garde}
 
+% Actualise the page counter
+\clearpage
+\setcounter{page}{2}
+
+\include{remerciements}
+
+
+
 \end{document}
+
+% Plan :
+% Page de garde
+% Remerciements
+% Résumé (anglais français)
+% Sommaire
+% Introduction
+% Présentaion Irisa et mission de stage
+% Analyse du problème et de son contexte / étude de l'existant / méthode et plan de travail
+% Solution proposée / Travail réalisé / Résultats développés
+% évaluation / Interprétation des résultats / Retour d'expérience / Bilan
+% Conclusion
+% Biblio
+% Annexes
