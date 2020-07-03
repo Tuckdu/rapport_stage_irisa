@@ -1,3 +1,20 @@
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[a4paper,left=2cm,right=2cm,top=2cm,bottom=2cm,headheight = 12pt]{geometry}
+\usepackage{libertine}
+\usepackage[pdftex]{graphicx}
+\usepackage{totpages}
+
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[english, french]{babel}
+
+\usepackage{setspace}
+\onehalfspacing
+
+% Change l'espacement entre deux paragraphes
+\setlength{\parskip}{24pt}
+
 % Change l'en-tête et le pied de page pour tout le document
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -27,14 +44,22 @@
 
 % Change le style des parties et sous partiess
 \usepackage[explicit]{titlesec}
+% change l'espacement au niveau du titre des chapitres
+\titlespacing*{\chapter}
+  {0pt}%  indent
+  {0pt}% space before
+  {12pt}% space after
+
+% Définie les couleurs utilisées dans le rapport
 \usepackage{color}
 
 \definecolor{darkblue}{rgb}{0.11, 0.30, 0.66}
 \definecolor{lightblue}{rgb}{0.14, 0.38, 0.82}
+\definecolor{gray}{rgb}{0.4,0.4,0.4}
 
 %% Style Chapitre
 % -------------------------------------------------------
-% Avec numéroté
+% Avec numéro
 \titleformat{\chapter}[hang] 
     {\fontsize{24pt}{0pt}\selectfont \bfseries}
     {\textcolor{darkblue} 
@@ -43,7 +68,7 @@
     {\huge}
 
 % Sans numéro
-\titleformat{name=\chapter,numberless}[display] 
+\titleformat{name=\chapter,numberless}[hang] 
     {\fontsize{24pt}{0pt}\selectfont \bfseries}
     {\textcolor{darkblue} 
     {#1}}
@@ -69,3 +94,7 @@
     {10pt}
     {\Large}
 % -------------------------------------------------------
+
+% Numérotation des chapitre en chiffre Romain
+\renewcommand{\thechapter}{\Roman{chapter}}
+
