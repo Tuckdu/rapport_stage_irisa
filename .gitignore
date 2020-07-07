@@ -7,5 +7,6 @@ ignore
 *.fls
 *.log
 *.synctex.gz
+*.toc
 
 datas/Thumbs.db
