@@ -1,8 +1,7 @@
 ### Rapport de stage IRISA
 
-Rapport de stage ESIR2 à l'IRISA pour le stage sur la saillance dans les peintures.
+Rapport de stage ESIR2 à l'IRISA pour le stage sur l'Étude et modèle prédictif de la saillance sur des œuvres d’art
 
 #TODO
 
-- Faire le template première de couverture en Latex
-- Décrire algo Ken burns effect associé à scanpath
+- Finir le rapport
