@@ -8,5 +8,8 @@ ignore
 *.log
 *.synctex.gz
 *.toc
+*.bbl
+*.blg
+*.out
 
 datas/Thumbs.db
