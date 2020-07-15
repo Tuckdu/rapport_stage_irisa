@@ -4,10 +4,17 @@
 
 \begin{document}
 \selectlanguage{french}
+% Édite style sous-titre image et tableau
+\makeatletter
+\newcommand{\figcapfont}{\itshape} 
+\newcommand{\tabcapfont}{\itshape}
+\renewcommand{\fnum@figure}{\figcapfont Image \thefigure}
+\renewcommand{\fnum@table}{\tabcapfont Tableau \thetable}
+\makeatother
 
 \include{page_de_garde}
 
-% Actualise the page counter
+% Actualise le compteur de page
 \clearpage
 \setcounter{page}{2}
 
@@ -17,9 +24,18 @@
 
 % Renomme "Tables des matières" en "Sommaire"
 \renewcommand{\contentsname}{Sommaire}
+{\setlength{\parskip}{6pt}
 \tableofcontents
+}
 
 \include{introduction}
+
+\include{irisa}
+
+\include{biblio}
+
+\include{annexe}
+
 \end{document}
 
 % Plan :
