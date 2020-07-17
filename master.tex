@@ -12,15 +12,15 @@
 \renewcommand{\fnum@table}{\tabcapfont Tableau \thetable}
 \makeatother
 
-\include{page_de_garde}
+\include{chapter/page_de_garde}
 
 % Actualise le compteur de page
 \clearpage
 \setcounter{page}{2}
 
-\include{remerciements}
+\include{chapter/remerciements}
 
-\include{resume}
+\include{chapter/resume}
 
 % Renomme "Tables des matières" en "Sommaire"
 \renewcommand{\contentsname}{Sommaire}
@@ -28,15 +28,17 @@
 \tableofcontents
 }
 
-\include{introduction}
+\include{chapter/introduction}
 
-\include{irisa}
+\include{chapter/irisa}
 
-\include{contexte}
+\include{chapter/contexte}
 
-\include{biblio}
+\include{chapter/premier_programme}
 
-\include{annexe}
+\include{chapter/biblio}
+
+\include{chapter/annexe}
 
 \end{document}
 

@@ -1,0 +1,17 @@
+\chapter{Diaporama et premiers programmes}
+
+\par
+Olivier m'a proposé de réaliser un diaporama pour le stand de l'équipe Percept lors de la journée du patrimoine à l'IRISA programmé le 24 Mars à l'origine mais qui a été reportée à cause du contexte actuel de situation sanitaire d'urgence. J'ai tout de même réalisé la présentation et devrait être diffusé à la prochaine journée du patrimoine organisée. Olivier m'as conseillé de réaliser le diaporama en \LaTeX{} qui est un langage de programmation qui permet de réaliser des documents. L'avantage de ce langage est qu'il permet d'automatiser beaucoup de chose, notamment la mise page. Dans ma présentation je devais mettre une dizaine d'\oe{}uvre avec pour chacune d'elle une bonne quantité d'information (description, carte de saillance...). \LaTeX{} m'as permis d'automatiser la mise en diapositive des peintures pour un rendu de qualité.
+
+\comment{Ajouter diapo en annexe ? ou juste capture ?}
+
+\par
+Afin de rajouter des animations dans mon diaporama, notamment des vidéos pour faciliter la compréhension, je me suis lancé dans la programmation de petits programmes en langage Python. Même si il y a eu de nombreux TPs en Python lors de cette année à l'ESIR j'ai remarqué que j'avais encore beaucoup à apprendre en regardant ce qu'il se faisait déjà sur le gitlab de l'équipe Percept (site web qui permet d'échanger et de sauvegarder facilement des documents). Cela m'as aussi permis de me familiariser avec les différentes données présentes dans la base de données oculométrique.
+
+\section{Vidéo fondue}
+
+Le premier script est un programme qui en entrée prend des images et en sortie créé une vidéo avec une transition en fondu entre chaque image. L'intérêt d'un tel programme est de le combiner au résultat d'un autre programme du gitlab qui donnait des cartes de chaleur de saillance (carte de saillance en couleur). De plus on peut faire évoluer la carte de chaleur de saillance en fonction du temps en ne prenant que les 2 premières secondes d'observation puis en prenant les 5 premières secondes. La vidéo finale permettait donc de voir comment la saillance évoluait au cours du temps et d'analyser ce que les participants ont regardé en premier.
+
+
+
+
