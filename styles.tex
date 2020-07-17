@@ -15,7 +15,7 @@
 \onehalfspacing
 
 % Change l'espacement entre deux paragraphes
-\setlength{\parskip}{24pt}
+\setlength{\parskip}{18pt}
 
 % Liste à puces
 \frenchbsetup{StandardLists=true}
@@ -70,6 +70,7 @@
 \definecolor{lightblue}{rgb}{0.18, 0.42, 0.86}
 \definecolor{gray}{rgb}{0.4,0.4,0.4}
 \definecolor{black}{rgb}{0.0,0.0,0.0}
+\definecolor{green}{rgb}{0.4, 0.8, 0.2}
 
 %% Style Chapitre
 % -------------------------------------------------------
@@ -119,4 +120,7 @@
 \widowpenalty=10000 
 \clubpenalty=10000 
 \raggedbottom
+
+% Nouvelle commande pour ajouter des commentaire sur le rapport
+\newcommand{\comment}[1]{\emph{\color{green} \% #1}}
 
