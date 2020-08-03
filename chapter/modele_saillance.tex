@@ -15,7 +15,7 @@ Ici notre objectif est de déterminer parmis les modèles qui existent quel est 
 Mon rôle ici a été de tester tous les modèles profonds pour vérifier dans un premier temps s'il était possible de les faire tourner et dans un second temps de données des peintures en entrées pour pouvoir y appliquer les métriques de qualité. On peut voir dans l'image \ref{fig:saliencyModel} les résultats des différents modèles comparés à la carte de saillance originale. 
 
 \par
-Visuellement il est assez évident de dire que les modèles profonds sont plus proche de l'original que les autres. Cela se confirme dans l'analyse des métriques. Dans le tableau \ref{tab:scores} on voit que les scores moyens des modèles fait-mains sont tout le temps moins bons que les modèles profonds. Les scores en gras sont les meilleurs scores entre tout les modèles. Ici SAM-ResNet est clairement le plus performant avec le meileur score dans cinq des sept métriques utilisées. C'est logiquement qu'avec Olivier on a choisi de continuer nos recherches avec SAM-ResNet.
+Visuellement il est assez évident de dire que les modèles profonds sont plus proches de l'original que les autres. Cela se confirme dans l'analyse des métriques. Dans le tableau \ref{tab:scores} on voit que les scores moyens des modèles fait-mains sont tout le temps moins bons que les modèles profonds. Les scores en gras sont les meilleurs scores entre tout les modèles. Ici SAM-ResNet est clairement le plus performant avec le meilleur score dans cinq des sept métriques utilisées. C'est logiquement qu'avec Olivier on a choisi de continuer nos recherches avec SAM-ResNet.
 
 \vfill
 
@@ -98,5 +98,56 @@ Visuellement il est assez évident de dire que les modèles profonds sont plus p
 
 \vfill
 
-% \newpage
+\newpage
 \section{Entrainement du modèle}
+
+\par
+On a donc un modèle profond pré-entrainé pour déterminer la saillance dans les scènes naturelles. Pour adapter ce modèle aux peintures afin d'obtenir de meilleurs scores et donc une meilleure qualité dans les cartes de saillance générées, on va faire du "\textbf{fine tuning}" que l'on peut traduire par "ajustement". C'est-à-dire qu'au lieu d'entrainer le modèle en partant de zéro, on va prendre les poids du modèle actuel et entrainer le modèle à partir de ceux-ci. Si on compare ça a une course, au lieu de commencer la course au départ, on part d'un checkpoint au milieu de la course. Cela permet de gagner du temps lors de l'entrainement sans perdre en qualité.
+
+\par
+La base de données utilisée pour l'entrainement est celle décrite dans la partie \ref{database}. Des 150 peintures disponibles, 90 sont utilisées pour l'entrainement, 20 pour la validation et les 40 dernières sont pour le test du modèle. Les peintures étaient dans un premier temps choisies par ordre alphabétique, ce qui était supposément un ordre aléatoire. Il s'est avéré après coup que la plupart des natures mortes ou des peintures nues avait le genre dans leur titre ce qui faussait l'aléatoire. J'ai donc créer un petit script qui m'as permis de faire la séparation de ma base de données de manière complètement aléatoire. Cela a permis d'améliorer la qualité des cartes de saillance générées.
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|l|}
+        \hline
+        Modèle & CC~$\uparrow$ & KL~$\downarrow$ & SIM~$\uparrow$ & NSS~$\uparrow$ & AUC-B~$\uparrow$ & AUC-J~$\uparrow$\\
+        \hline
+        SAM ResNet              & 0.691 & 1.088 & 0.609 & 1.792 & 0.786 & 0.857\\
+        SAM ResNet (fine-tuné)  & 0.758 & 0.836 & 0.681 & 1.922 & 0.845 & 0.882\\
+        \hline
+        Gain (\%)               & +9.7\% & -23\% & +11.8\% & +7.2\% & +7.5\% & +2.9\%\\
+        \hline
+    \end{tabular}
+    \caption{Performances de SAM-ResNet après fine-tuning}
+    \label{tab:scoresfinetuned}
+\end{table}
+
+\par
+Les résultats obtenus après l'entrainement sont plutôt bons. Les scores avant et après des métriques sont visibles dans le tableau \ref{tab:scoresfinetuned}. Toutes les métriques montrent un score supérieur pour le modèle ré-entrainé. Un exemple des résultats sur les images \ref{fig:avantapres} montre qu'effectivement sans être une copie conforme de la carte de saillance humaine, la version ré-entrainée de Sam-ResNet donne des résultats corrects.
+
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}{.49\textwidth}
+        \includegraphics[width=\linewidth]{datas/samresnet/stimulus_La_Ferme_des_Collettes_Renoir_1908.png}
+        \caption{}
+    \end{subfigure}
+    \begin{subfigure}{.49\textwidth}
+        \includegraphics[width=\linewidth]{datas/samresnet/human_La_Ferme_des_Collettes_Renoir_1908.png}
+        \caption{}
+    \end{subfigure}
+
+    \begin{subfigure}{.49\textwidth}
+        \includegraphics[width=\linewidth]{datas/samresnet/orig_La_Ferme_des_Collettes_Renoir_1908.png}
+        \caption{}
+    \end{subfigure}
+    \begin{subfigure}{.49\textwidth}
+        \includegraphics[width=\linewidth]{datas/samresnet/retrain_La_Ferme_des_Collettes_Renoir_1908.png}
+        \caption{}
+    \end{subfigure}
+    \caption{(a) Peinture originale, (b) carte de saillance humaine, (c) prédiction SAM-ResNet et (d) prédiction de SAM-ResNet ré-entrainé . (Renoir, La ferme des Collettes, 1908.)}
+    \label{fig:avantapres}
+\end{figure}
+
+\par
+Cependant il est important de noté que les mouvements artistiques des peintures influencent le résultats du modèle de saillance. En effet les résultats sont bien meilleurs sur des peintures appartenant au mouvement Réalisme ou Romantisme que celles du Pointillisme. Cela est dû au fait que le modèle étant construit et entrainé originellement pour des scènes naturelles est ce qui se rapproche le plus des peintures réalistes. Pour améliorer les résultats je pense qu'il faudrait ré-entrainer entièrement le modèle avec une plus grande base de données et avoir plus de diversité avec plus de styles et de mouvements différents.
