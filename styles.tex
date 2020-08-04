@@ -6,6 +6,16 @@
 \usepackage{totpages}
 \usepackage[hidelinks]{hyperref}
 
+%package pour faire des graphs
+\usepackage{pgfplots}
+\pgfplotsset{width=7cm,compat=1.8}
+\pgfmathdeclarefunction{gauss}{2}{%
+  \pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
+}
+% \pgfmathdeclarefunction{ease}{}{%
+%   \pgfmathparse{-(cos(pi*x)-1)/2}%
+% }
+
 \usepackage{helvet}
 \renewcommand{\familydefault}{\sfdefault}
 \usepackage[english, french]{babel}

@@ -40,5 +40,42 @@ Je me suis donc lancé dans la réalisation d'un programme en Python qui en entr
 Pour les mouvements j'ai codé le zoom et le panoramique, la rotation ici n'a pas forcément d'intérêt. J'ai d'abord commencé par créer l'effet de zoom qui consiste à redimensionner l'image tout en gardant la résolution de la caméra identique. Donc par exemple pour un zoom x2 je double la taille de l'image mais je garde celui de la caméra sur les dimensions d'origine. Une fois zoomé, le but est de se déplacer de fixation en fixation en suivant le chemin visuel. Afin d'obtenir des mouvements lisses et de pouvoir gérer les bords proprement je précalcule la position finale de ma caméra puis je fais bouger la caméra de mon point d'origine vers la position finale. En fusionnant les deux mouvements on peut créer un zoom sur un point précis de l'image.
 
 \par
-Dans un premier temps le mouvement était trop linéaire pour un rendu final assez pauvre et saccadé. Pour lisser les mouvements j'ai appliqué un effet de ease-in-out. Cela permet d'avoir une accélération progressive au début du mouvement et une décélération progressive à la fin.
-\comment{Expliquer ease-in-out avec formule et interpolation ?}
+Dans un premier temps le mouvement était trop linéaire ce qui a pour effet de donner un rendu final assez pauvre et saccadé. Pour lisser les mouvements j'ai appliqué un effet de ease-in-out. Cela permet d'avoir une accélération progressive au début du mouvement et une décélération progressive à la fin. Au lieu d'avoir une interpolation linéaire (graphe \ref{subfig:lineaire}), c'est-à-dire que la caméra se déplace de la même distance entre chaque image d'un plan à un autre, ici on a une interpolation avec de petites distances en début et en fin de parcours mais de grandes distances en milieu de parcours (graphe \ref{subfig:ease}).
+
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}{.49\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[every axis plot post/.append style={
+              mark=none,domain=0:60,samples=50,smooth},
+                % All plots: from -2:2, 50 samples, smooth, no marks
+              axis x line*=bottom, % no box around the plot, only x and y axis
+              axis y line*=left, % the * suppresses the arrow tips
+              enlargelimits=upper] % extend the axes a bit to the right and top
+              \addplot {x/60};
+            \end{axis}
+            \end{tikzpicture}
+        \caption{Linéaire}
+        \label{subfig:lineaire}
+    \end{subfigure}
+    \begin{subfigure}{.49\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[every axis plot post/.append style={
+              mark=none,domain=0:60,samples=50,smooth},
+                % All plots: from -2:2, 50 samples, smooth, no marks
+              axis x line*=bottom, % no box around the plot, only x and y axis
+              axis y line*=left, % the * suppresses the arrow tips
+              enlargelimits=upper] % extend the axes a bit to the right and top
+              \addplot {-(cos(pi*x)-1)/2};
+            \end{axis}
+            \end{tikzpicture}
+        \caption{Ease-in-out}
+        \label{subfig:ease}
+    \end{subfigure}
+    \caption{Graphes représentant les coefficients d'interpolations pour 60 images}
+    \label{fig:graphes}
+\end{figure}
+
+\comment{Faire montage vidéo pour montrer différence avec lien en annexe ?}
