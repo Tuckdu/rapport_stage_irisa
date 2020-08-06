@@ -1,7 +1,7 @@
 \chapter{Applications}
 
 \par
-Les applications possibles à partir des cartes de saillance sont illimitées. Eakta Jain, professeur assistante à l'université de de Floride, a déjà travaillé avec Olivier et a pu nous apporter son expérience grâce aux différents projets d'applications basés sur le mouvement du regard qu'elle a réalisé \cite{eaktalab}. Ses projets liés au regard humain sont souvent appliqués aux comics qui a des similarités avec la peinture.
+Les applications possibles à partir des cartes de saillance sont illimitées. Notre problématique ici était de réussir à \textbf{animer} nos peintures à partir de la carte de saillance générée par le modèle de saillance. Eakta Jain, professeur assistante à l'université de de Floride, a déjà travaillé avec Olivier et a pu nous apporter son expérience grâce aux différents projets d'applications basés sur le mouvement du regard qu'elle a réalisé \cite{eaktalab}. Ses projets liés au regard humain sont souvent appliqués aux comics qui a des similarités avec la peinture.
 
 \section{Recherche d'application}
 
@@ -9,19 +9,19 @@ Les applications possibles à partir des cartes de saillance sont illimitées. E
 Afin de déterminer quelle application il serait intéressant de développer, il faut faire une recherche de ce qui existe déjà ou inventer autre chose. Je vais présenter ici les différentes pistes qui ont été envisagées et expliquer notre choix final.
 
 \par
-Pour ajouter du mouvement, il existe des logiciels qui permettent de générer des plotagraphes. Basé sur les cinémagraphes, qui sont des mélanges d'images et de vidéos, les plotagraphes permettent d'ajouter du mouvement à partir de l'image seule. En revanche il faut ajuster à la main les zones à mouvoir donc difficilement automatisable et le résultat n'est impressionnant que sur les fluides (eau, nuages, fumée...).
+Pour ajouter du mouvement, il existe des logiciels qui permettent de générer des \textbf{plotagraphes}. Basé sur les cinémagraphes, qui sont des mélanges d'images et de vidéos, les plotagraphes permettent d'ajouter du mouvement à partir de l'image seule. En revanche il faut ajuster à la main les zones à mouvoir donc difficilement automatisable et le résultat n'est impressionnant que sur les fluides (eau, nuages, fumée...).
 
 \par
-Eakta a un projet de segmentation des différentes parties d'un comic pour animer les personnes qui parle et ajouter du son \cite{segmentationcomics}. La segmentation est obtenue à partir du chemin visuel aquis par occulométrie. Une idée intéressante mais difficlement adaptable à toutes les peintures car trop détaillée.
+Eakta a un projet de \textbf{segmentation} des différentes parties d'un comic pour animer les personnes qui parle et ajouter du son \cite{segmentationcomics}. La segmentation est obtenue à partir du chemin visuel aquis par occulométrie. Une idée intéressante mais difficilement adaptable à toutes les peintures car trop détaillée.
 
 \par
-Un autre projet d'Eakta appelé "Predicting Moves-on-Stills for Comic Art using Viewer Gaze Data" \cite{kenburns} ajoute un effet de Ken Burns sur des pages de comics en fonction des prédictions du mouvement du regard du spectateur. Cet un effet intéressant et facile à mettre en place. C'est la piste vers laquelle on se dirigera et que l'on détaillera dans la partie suivante. Il existe aussi une version 3D de cet effet \cite{kenburns3D} qui est très impressionant mais est compliqué a mettre en place et difficile à mettre en relation avec la carte de saillance.
+Un autre projet d'Eakta appelé "Predicting Moves-on-Stills for Comic Art using Viewer Gaze Data" \cite{kenburns} ajoute un effet de \textbf{Ken Burns} sur des pages de comics en fonction des prédictions du mouvement du regard du spectateur. Cet un effet intéressant et facile à mettre en place. C'est la piste vers laquelle on se dirigera et que l'on détaillera dans la partie suivante. Il existe aussi une version 3D de cet effet \cite{kenburns3D} qui est très impressionante mais est compliquée à mettre en place et difficile à mettre en relation avec la carte de saillance.
 
 \newpage
 \section{Effet Ken burns}
 
 \par
-L'effet Ken Burns est représenté par un mouvement de caméra (panoramique, zoom ou rotation) sur une image fixe. L'ajout de mouvement et d'animation permet de garder l'attention du spectateur. C'est un effet qui est très régulièrement utilisé dans les documentaires, dans les journeaux ou tout simplement dans les diaporamas photos. 
+L'effet \textbf{Ken Burns} est représenté par un mouvement de caméra (panoramique, zoom ou rotation) sur une image fixe. L'ajout de mouvement et d'animation permet de garder l'attention du spectateur. C'est un effet qui est très régulièrement utilisé dans les documentaires, dans les journeaux télévisés ou tout simplement dans les diaporamas photos. 
 
 \begin{figure}[ht]
     \centering
@@ -31,7 +31,7 @@ L'effet Ken Burns est représenté par un mouvement de caméra (panoramique, zoo
 \end{figure}
 
 \par
-J'ai donc décidé de partir sur un effet Ken Burns comme projet d'application. Mon but ici est que le mouvement de la caméra suive celui d'un \oe{}il humain. On est capable de généré un chemin visuel à partir d'une carte de saillance grâce à un modèle saccadique. J'ai pu en utiliser un créé par Olivier Le Meur \cite{saccadicmodel} disponible sur le gitlab de l'équipe Percept. Ainsi à partir d'une peinture on obtient une carte de saillance grâce au modèle de saillance, puis le chemin visuel grâce au modèle saccadique et enfin un effet Ken Burns qui suit le chemin visuel.
+J'ai donc décidé de partir sur un effet Ken Burns comme projet d'application. Mon but ici est que le mouvement de la caméra suive celui d'un \oe{}il humain. On est capable de généré un chemin visuel à partir d'une carte de saillance grâce à un \textbf{modèle saccadique}. J'ai pu en utiliser un créé par Olivier Le Meur \cite{saccadicmodel} disponible sur le gitlab de l'équipe Percept. Ainsi à partir d'une peinture on obtient une carte de saillance grâce au modèle de saillance, puis le chemin visuel grâce au modèle saccadique et enfin un effet Ken Burns qui suit le chemin visuel.
 
 \par
 Je me suis donc lancé dans la réalisation d'un programme en Python qui en entrée prend une peinture et le chemin visuel associé pour en sortie obtenir une vidéo avec l'effet Ken Burns. Le principe de base est d'avoir une caméra qui se déplace dans l'image et qui enregistre ses déplacements à la fréquence de la vidéo de sortie.
@@ -78,7 +78,8 @@ Dans un premier temps le mouvement était trop linéaire ce qui a pour effet de 
     \label{fig:graphes}
 \end{figure}
 
-\comment{Faire montage vidéo pour montrer différence avec lien en annexe ?}
+\par
+Et enfin comme les chemins visuels sont souvent composés d'une vingtaine de fixations souvent proches les unes des autres, j'ai décidé de ne pas faire un déplacement de caméra pour chacune d'enre elles. Cela ferait trop de répétition et perderait le spectateur dans la peinture. A la place je fais en sorte que les fixations présentes sur un certain pourcentage du cadre de la caméra (75\% dans mon cas) soit ignorées pour le reste du parcours de la caméra.
 
 \par
-Pour améliorer l'application un concept d'intelligence artificielle qui décrit ce qu'elle voit a été pensé. L'idée ici serait d'ajouter aux vidéos des sous-titres automatiques générés par du machine learning qui décrivent ce qui est représenté. Il en existe qui fonctionne pour des scènes naturelles avec par exemple le modèle Neuraltalk2 de Karpathy (\linkrename{démo}{http://cs.stanford.edu/people/karpathy/neuraltalk2/demo.html}). Malheureusement la description des éléments dans les peintures est assez désastreuse. De plus si on veut entrainer le modèle avec des mots relatif à la peinture, il nous faut une base de données de mots associés à des éléments abstraits ce qui est très compliqué a mettre en place.
+Pour améliorer l'application, Olivier, Eakta et moi avons pensé un concept d'intelligence artificielle qui décrit ce qu'elle voit. L'idée ici serait d'ajouter aux vidéos des \textbf{sous-titres automatiques} générés par du machine learning qui décrivent ce qui est représenté. Il en existe qui fonctionne pour des scènes naturelles avec par exemple le modèle Neuraltalk2 de Karpathy (\linkrename{démo}{http://cs.stanford.edu/people/karpathy/neuraltalk2/demo.html}). Malheureusement, après avoir testé le modèle sur nos peinture, le résultat est assez désastreux. Il faudrait donc ré-entrainer le modèle. Cependant si on veut entrainer le modèle avec des mots relatif à la peinture, il nous faut une base de données de mots associés à des éléments abstraits ce qui est très compliqué a mettre en place.
