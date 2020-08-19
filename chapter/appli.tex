@@ -91,7 +91,7 @@ Et enfin comme les chemins visuels sont souvent composés d'une vingtaine de fix
 \section{Sous-titre descriptif}
 
 \par
-Pour améliorer l'application, Olivier, Eakta et moi avons pensé un concept d'intelligence artificielle qui décrit ce qu'elle voit. L'idée ici serait d'ajouter aux vidéos des \textbf{sous-titres automatiques} générés par du machine learning qui décrivent ce qui est représenté. Il en existe qui fonctionne pour des scènes naturelles avec par exemple le modèle Neuraltalk2 de Karpathy (\linkrename{lien démo}{http://cs.stanford.edu/people/karpathy/neuraltalk2/demo.html}).
+Pour améliorer l'application, Olivier, Eakta et moi avons pensé à un concept d'intelligence artificielle qui décrit ce qu'elle voit. L'idée ici serait d'ajouter aux vidéos des \textbf{sous-titres automatiques} générés par un réseau de neurones qui décrivent ce qui est représenté. Il en existe qui fonctionne pour des scènes naturelles avec par exemple le modèle Neuraltalk2 de Karpathy \cite{neuraltalk2} (\linkrename{lien démo}{http://cs.stanford.edu/people/karpathy/neuraltalk2/demo.html}).
 
 \par
 J'ai testé ce modèle sur les peintures mais le résultats est ridiculement mauvais. Quasiment aucune description ne correspond à l'image comme on peut le voir en exemple de l'image \ref{fig:ex_neuraltalk}. Il faudrait donc ré-entrainer le modèle pour pouvoir espérer obtenir de meilleurs résultats. Cependant plusieurs problèmes nous empêche de travailler sur cette solution. Premièrement le programme en lui-même est assez complexe et je n'ai pas réussi à faire tourner la partie entrainement du modèle. Deuxièmement il est très dur de modifié le dataset de mots puisque celui-ci est composé de mots associés à des éléments d'images que seul le modèle peut interprété. On a donc quasiment aucune maléabilité du dataset. Et troisièmement la fin du stage arrive trop vite pour que je prenne le temps de m'attarder dessus.
@@ -104,10 +104,15 @@ J'ai testé ce modèle sur les peintures mais le résultats est ridiculement mau
 \end{figure}
 
 \par
-On a donc décidé avec Olivier de faire une preuve de concept. C'est-à-dire un script prototype qui permettrait de prouver qu'il est possible d'utiliser des sous-titres générés automatiquement sur ces peintures et des les intégrer à notre vidéo. J'ai donc modifié mon programme qui génère des vidéo pour pouvoir insérer du texte en bas de l'image. Cela m'as permis d'obtenir le résultat visible sur l'image \ref{fig:ex_neuraltalk}. Le programme de la preuve de concept se déroule en trois étapes. En premier je pré-génère les images lorsque la vidéo est en pause. Ensuite je rentre ces images dans le modèle de sous-titrage. Enfin je génère la vidéo en ajoutant mes images sous-titrées lors des pauses de ma vidéo.
+On a donc décidé avec Olivier de faire une \textbf{preuve de concept}. C'est-à-dire un script prototype qui permettrait de prouver qu'il est possible d'utiliser des sous-titres générés automatiquement sur ces peintures et des les intégrer à notre vidéo. J'ai donc modifié mon programme qui génère des vidéos pour pouvoir insérer du texte en bas de l'image. Cela m'as permis d'obtenir le résultat visible sur l'image \ref{fig:ex_neuraltalk}. Le programme de la preuve de concept se déroule en trois étapes. En premier je pré-génère les images lorsque la vidéo est en pause. Ensuite je rentre ces images dans le modèle de sous-titrage pour obtenir des images avec des descriptions. Enfin je génère la vidéo en ajoutant mes images sous-titrées lors des pauses de ma vidéo.
 
 \par
-Afin de pouvoir diffuser ces travaux sur les réseaux sociaux (LinkedIn ou Medium), j'ai ajouté à la pause du début de vidéo un sous-titre qui dit "What does an AI see in this paintings ?", traduit par "Que voit une IA dans cette peinture ?", ainsi que le nom de la peinture et de l'artiste en haut de la vidéo. Une question qui attire l'intérêt du spectateur et qui permet de rendre encore plus drôle les sous-titres qui sont souvent éloignés de ce qui est visible sur la peinture.
+Afin de pouvoir diffuser ces travaux sur les réseaux sociaux (LinkedIn ou Medium), j'ai ajouté à la pause du début de vidéo un sous-titre qui dit "What does an AI see in this paintings ?", traduit par "Que voit une IA dans cette peinture ?", ainsi que le nom de la peinture et de l'artiste en haut de la vidéo (voir image \ref{fig:title_screen}). Une question qui intrigue le spectateur et qui lui donne envie de regarder le reste de la vidéo.
 
-\comment{Ajouter capture de title screen}
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.7\linewidth]{datas/title_screen.png}
+  \caption{Début de la vidéo (\emph{Venice from the porch of Madonna}, Turner, 1835)}
+  \label{fig:title_screen}
+\end{figure}
 
