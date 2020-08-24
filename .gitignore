@@ -12,4 +12,4 @@ ignore
 *.blg
 *.out
 
-datas/Thumbs.db
+Thumbs.db
