@@ -6,13 +6,13 @@
 Il existe aujourd'hui de nombreux modèles de saillance qui permettent de \textbf{générer des cartes de saillance} à partir de scènes naturelles. Le gros avantage de ces modèles est qu'ils permettent d'éviter la fastidieuse tâche de récupération des données oculométriques sur des humains tout en ayant des résultats proches d'une carte de saillance humaine.
 
 \par
-Il y a aujourd'hui deux types de modèles de saillance : les modèles "\textbf{fait-mains}", qui appliquent des traitements sur l'image suivant des fonctions mathématiques, et les modèles basés sur \textbf{l'apprentissage profond}, qui s'entrainent sur des bases de données pour s'améliorer. Les modèles fait-mains sont en général plus anciens et précèdent l'avènement du machine learning et de l'apprentissage profond. Ils sont donc généralement moins puissants que les modèles profonds.
+Il y a aujourd'hui deux types de modèles de saillance : les modèles "\textbf{fait-mains}", qui appliquent des traitements sur l'image suivant des fonctions mathématiques, et les modèles basés sur \textbf{l'apprentissage profond}, qui s'entrainent sur des bases de données pour s'améliorer. Les modèles fait-mains sont en général plus anciens et précèdent l'avènement des réseaux de neurones et de l'apprentissage profond. Ils sont donc généralement moins puissants que les modèles profonds.
 
 \par
 Ici notre objectif est de déterminer parmis les modèles qui existent quel est le modèle qui obtient les meilleurs résultats quand on lui donne des peintures en entrée. Pour pouvoir comparer le plus objectivement possible les résultats, il est nécessaire d'utiliser des \textbf{métriques de qualité}. De la même manière que le mètre est utilisé pour mesurer une distance, les métriques sont des outils de mesure avec des échelles variées qui permettent d'associer un score jugeant la qualité de nos cartes de saillances. Il est préférable d'utiliser plusieurs métriques différentes puisque chacune d'entre elles à ses qualités et ses défauts. Ici les métriques utilisées sont celles du benchmark du MIT \cite{benchmark_MIT}.
 
 \par
-Mon rôle ici a été de tester tous les modèles profonds pour vérifier dans un premier temps s'il était possible de les faire tourner et dans un second temps de donner des peintures en entrées pour pouvoir y appliquer les métriques de qualité. On peut voir dans l'image \ref{fig:saliencyModel} les résultats des différents modèles comparés à la carte de saillance originale. 
+Mon rôle ici a été de tester tous les modèles profonds pour vérifier dans un premier temps s'il était possible de les faire tourner et dans un second temps de donner des peintures en entrée pour pouvoir y appliquer les métriques de qualité. On peut voir dans l'image \ref{fig:saliencyModel} les résultats des différents modèles comparés à la carte de saillance originale. 
 
 \par
 Visuellement il est assez évident de dire que les modèles profonds sont plus proches de la carte de saillance humaine que les autres. Cela se confirme dans l'analyse des métriques. Dans le tableau \ref{tab:scores} on voit que les scores moyens des modèles fait-mains sont tout le temps moins bons que les modèles profonds. Les scores en gras sont les meilleurs scores entre tous les modèles. Ici SAM-ResNet est clairement le plus performant avec le meilleur score dans cinq des sept métriques utilisées. C'est logiquement qu'avec Olivier on a choisi de continuer nos recherches avec SAM-ResNet.
@@ -64,7 +64,7 @@ Visuellement il est assez évident de dire que les modèles profonds sont plus p
         \caption{SAM-ResNet}
     \end{subfigure}
      
-    \caption{Cartes de saillance de modèles fait-mains (2\up{ème} ligne) et profonds (3\up{ème} ligne). La 1\up{ère} ligne illustre le stimuli originale et sa carte de saillance humaine(\emph{Cows at a pond}, Bilders, 1856)}
+    \caption{Cartes de saillance de modèles fait-mains (2\up{ème} ligne) et profonds (3\up{ème} ligne). La 1\up{ère} ligne illustre le stimuli original et sa carte de saillance humaine (\emph{Cows at a pond}, Bilders, 1856)}
     \label{fig:saliencyModel}
 \end{figure}
 
@@ -102,7 +102,7 @@ Visuellement il est assez évident de dire que les modèles profonds sont plus p
 \section{Entrainement du modèle}
 
 \par
-On a donc un modèle profond pré-entrainé pour déterminer la saillance dans les scènes naturelles. Pour adapter ce modèle aux peintures afin d'obtenir de meilleurs scores et donc une meilleure qualité dans les cartes de saillance générées, on va faire du "\textbf{fine tuning}", que l'on peut traduire par "ajustement". C'est-à-dire qu'au lieu d'entrainer le modèle en partant de zéro, on va prendre les poids du modèle actuel et entrainer le modèle à partir de ceux-ci. Si on compare ça a une course, au lieu de commencer la course au départ, on part d'un checkpoint au milieu de la course. Cela permet de gagner du temps lors de l'entrainement sans perdre en qualité.
+On a donc un modèle profond pré-entrainé pour déterminer la saillance dans les scènes naturelles. Pour adapter ce modèle aux peintures afin d'obtenir de meilleurs scores et donc une meilleure qualité dans les cartes de saillance générées, on va faire du "\textbf{fine tuning}", que l'on peut traduire par "ajustement". C'est-à-dire qu'au lieu d'entrainer le modèle en partant de zéro, on va prendre les poids du modèle actuel et entrainer le modèle à partir de ceux-ci. Si on compare ça à une course, au lieu de commencer au départ, on part d'un checkpoint au milieu de la course. Cela permet de gagner du temps lors de l'entrainement sans perdre en qualité.
 
 \par
 La base de données utilisée pour l'entrainement est celle décrite dans la partie \ref{database}. Des 150 peintures disponibles, 90 sont utilisées pour l'entrainement, 20 pour la validation et les 40 dernières sont pour le test du modèle. Les peintures étaient dans un premier temps choisies par ordre alphabétique, ce qui était supposément un ordre aléatoire. Il s'est avéré après coup que la plupart des natures mortes ou des peintures nues avait le genre dans leur titre ce qui faussait l'aléatoire. J'ai donc créer un petit script qui m'as permis de faire la séparation de ma base de données de manière complètement aléatoire. Cela a permis d'améliorer la qualité des cartes de saillance générées.
@@ -128,20 +128,19 @@ Les résultats obtenus après l'entrainement sont plutôt bons. Les scores avant
 
 \begin{figure}[ht]
     \centering
-    \begin{subfigure}{.49\textwidth}
+    \begin{subfigure}{.24\textwidth}
         \includegraphics[width=\linewidth]{datas/samresnet/stimulus_La_Ferme_des_Collettes_Renoir_1908.png}
         \caption{}
     \end{subfigure}
-    \begin{subfigure}{.49\textwidth}
+    \begin{subfigure}{.24\textwidth}
         \includegraphics[width=\linewidth]{datas/samresnet/human_La_Ferme_des_Collettes_Renoir_1908.png}
         \caption{}
     \end{subfigure}
-
-    \begin{subfigure}{.49\textwidth}
+    \begin{subfigure}{.24\textwidth}
         \includegraphics[width=\linewidth]{datas/samresnet/orig_La_Ferme_des_Collettes_Renoir_1908.png}
         \caption{}
     \end{subfigure}
-    \begin{subfigure}{.49\textwidth}
+    \begin{subfigure}{.24\textwidth}
         \includegraphics[width=\linewidth]{datas/samresnet/retrain_La_Ferme_des_Collettes_Renoir_1908.png}
         \caption{}
     \end{subfigure}
@@ -149,5 +148,46 @@ Les résultats obtenus après l'entrainement sont plutôt bons. Les scores avant
     \label{fig:avantapres}
 \end{figure}
 
+\begin{table}[ht]
+    \centering
+        \begin{tabular}{|l|l|l|l|l|}
+                \hline
+        Model & Style & CC~$\uparrow$ & NSS~$\uparrow$  & AUC-J~$\uparrow$\\
+                \hline
+        MLNET       & Fauvism & 0.600 & 1.553 & 0.825\\
+                    & Impressionism & 0.533 & 1.367 & 0.798\\
+                    & Pointillism & 0.536 & 1.306 & 0.802\\
+                    & Realism & \textbf{0.601} & \textbf{1.709} & \textbf{0.828}\\
+                    & Romanticism & 0.564 & 1.564 & 0.824\\
+                \hline
+        DeepGazeII  & Fauvism & 0.485 & 1.394 & 0.804\\
+                    & Impressionism & 0.460 & 1.305 & 0.796\\
+                    & Pointillism & 0.452 & 1.206 & 0.782\\
+                    & Realism & \textbf{0.492} & \textbf{1.609} & \textbf{0.823}\\
+                    & Romanticism & 0.462 & 1.444 & 0.807\\
+                \hline
+        SALICON     & Fauvism & 0.498 & 1.271 & 0.820\\
+                    & Impressionism & 0.523 & 1.362 & 0.809\\
+                    & Pointillism & 0.497 & 1.234 & 0.809\\
+                    & Realism & \textbf{0.577} & \textbf{1.693} & \textbf{0.842}\\
+                    & Romanticism & 0.576 & 1.572 & 0.842\\
+                \hline
+        SAM ResNet  & Fauvism & \textbf{0.723} & 1.834 & 0.867\\
+                    & Impressionism & 0.648 & 1.659 & 0.845\\
+                    & Pointillism & 0.704 & 1.663 & 0.856\\
+                    & Realism & 0.701 & \textbf{2.015} & 0.862\\
+                    & Romanticism & 0.705 & 1.949 & \textbf{0.874}\\
+                \hline
+        SAM VGG     & Fauvism & \textbf{0.647} & 1.635 & 0.849\\
+                    & Impressionism & 0.571 & 1.446 & 0.831\\
+                    & Pointillism & 0.620 & 1.464 & 0.837\\
+                    & Realism & 0.623 & \textbf{1.757} & 0.848\\
+                    & Romanticism & 0.621 & 1.707 & \textbf{0.857}\\
+        \hline
+        \end{tabular}
+    \caption{Performances des modeles de saillance profonds sur les 5 mouvements artistiques (meilleurs scores affichés en gras)}
+    \label{tab:scoresmouvement}
+\end{table}
+
 \par
-Cependant il est important de noté que les mouvements artistiques des peintures influencent le résultat du modèle de saillance. En effet les résultats sont bien meilleurs sur des peintures appartenant au mouvement du Réalisme ou du Romantisme que celles du Pointillisme ou de l'Impressionisme. Cela est dû au fait que le modèle étant construit et entrainé originellement pour des scènes naturelles est ce qui se rapproche le plus des peintures réalistes. Pour améliorer les résultats je pense qu'il faudrait ré-entrainer entièrement le modèle avec une plus grande base de données et avoir plus de diversité avec plus de styles et de mouvements différents. C'est un travail qui demande beaucoup de temps et d'organisation notamment pour la collecte de données.
+Cependant il est important de noté que les mouvements artistiques des peintures influencent le résultat du modèle de saillance. En effet les résultats sont bien meilleurs sur des peintures appartenant au mouvement du Réalisme ou du Romantisme que celles du Pointillisme ou de l'Impressionisme comme on peut le voir dans le tableau \ref{tab:scoresmouvement}. Cela est dû au fait que le modèle étant construit et entrainé originellement pour des scènes naturelles est ce qui se rapproche le plus des peintures réalistes. Pour améliorer les résultats je pense qu'il faudrait ré-entrainer entièrement le modèle avec une plus grande base de données et avoir plus de diversité avec plus de styles et de mouvements différents. C'est un travail qui demande beaucoup de temps et d'organisation notamment pour la collecte de données.
