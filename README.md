@@ -18,7 +18,7 @@ Here some exemple of videos explain in the report:
 
 <html>
 <body>
-<p align="center"><img src="docs_git/scanpath.gif" alt="Scanpath animated video" height="250" align="middle"></p>
+<p align="center"><img src="docs_git/scanpaths.gif" alt="Scanpath animated video" height="250" align="middle"></p>
 </body>
 </html>
 
