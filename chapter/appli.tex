@@ -15,7 +15,7 @@ Pour ajouter du mouvement, il existe des logiciels qui permettent de générer d
 Eakta a un projet de \textbf{segmentation} des différentes parties d'un comic pour animer les personnes qui parlent et ajouter du son \cite{segmentationcomics}. La segmentation est obtenue à partir du chemin visuel aquis par occulométrie. Une idée intéressante mais difficilement adaptable à toutes les peintures car celles-ci sont trop détaillées.
 
 \par
-Un autre projet d'Eakta appelé "Predicting Moves-on-Stills for Comic Art using Viewer Gaze Data" \cite{kenburns} ajoute un effet de \textbf{Ken Burns} sur des pages de comics en fonction des prédictions du mouvement du regard du spectateur. Cet un effet intéressant et facile à mettre en place. C'est la piste vers laquelle on se dirigera et que l'on détaillera dans la partie suivante. Il existe aussi une version 3D de cet effet \cite{kenburns3D} qui est très impressionante mais est compliquée à mettre en place et difficile à mettre en relation avec la carte de saillance.
+Un autre projet d'Eakta appelé "Predicting Moves-on-Stills for Comic Art using Viewer Gaze Data" \cite{kenburns} ajoute un effet de \textbf{Ken Burns} sur des pages de comics en fonction des prédictions du mouvement du regard du spectateur. Cet un effet intéressant et facile à mettre en place. C'est la piste vers laquelle on se dirigera et que l'on détaillera dans la partie suivante. Il existe aussi une version 3D de cet effet \cite{kenburns3D} qui est très impressionante. Cependant, elle est compliquée à mettre en place et difficile à mettre en relation avec la carte de saillance.
 
 \newpage
 \section{Effet Ken burns}
@@ -31,7 +31,7 @@ L'effet \textbf{Ken Burns} est représenté par un mouvement de caméra (panoram
 \end{figure}
 
 \par
-J'ai donc décidé de partir sur un effet Ken Burns comme projet d'application. Mon but ici est que le mouvement de la caméra suive celui d'un \oe{}il humain. On est capable de généré un chemin visuel à partir d'une carte de saillance grâce à un \textbf{modèle saccadique}. J'ai pu en utiliser un créé par Olivier Le Meur \cite{saccadicmodel} disponible sur le gitlab de l'équipe Percept. Ainsi à partir d'une peinture on obtient une carte de saillance grâce au modèle de saillance, puis le chemin visuel grâce au modèle saccadique et enfin un effet Ken Burns qui suit le chemin visuel.
+J'ai donc décidé de partir sur un effet Ken Burns comme projet d'application. Mon but ici est que le mouvement de la caméra suive celui d'un \oe{}il humain. On est capable de générer un chemin visuel à partir d'une carte de saillance grâce à un \textbf{modèle saccadique}. J'ai pu en utiliser un créé par Olivier Le Meur \cite{saccadicmodel} disponible sur le gitlab de l'équipe Percept. Ainsi à partir d'une peinture, on obtient une carte de saillance grâce au modèle de saillance, puis le chemin visuel grâce au modèle saccadique et enfin un effet Ken Burns associé au chemin visuel.
 
 \par
 Je me suis donc lancé dans la réalisation d'un programme en Python qui en entrée prend une peinture et le chemin visuel associé pour en sortie obtenir une vidéo avec l'effet Ken Burns. Le principe de base est d'avoir une caméra qui se déplace dans l'image et qui enregistre ses déplacements à la fréquence de la vidéo de sortie.
@@ -94,12 +94,12 @@ Et enfin comme les chemins visuels sont souvent composés d'une vingtaine de fix
 Pour améliorer l'application, Olivier, Eakta et moi avons pensé à un concept d'intelligence artificielle qui décrit ce qu'elle voit. L'idée ici serait d'ajouter aux vidéos des \textbf{sous-titres automatiques} générés par un réseau de neurones qui décrivent ce qui est représenté. Il en existe qui fonctionne pour des scènes naturelles avec par exemple le modèle Neuraltalk2 de Karpathy \cite{neuraltalk2} (\linkrename{lien démo}{http://cs.stanford.edu/people/karpathy/neuraltalk2/demo.html}).
 
 \par
-J'ai testé ce modèle sur les peintures mais le résultat est ridiculement mauvais. Quasiment aucune description ne correspond à l'image comme on peut le voir en exemple de l'image \ref{fig:ex_neuraltalk}. Il faudrait donc ré-entrainer le modèle pour pouvoir espérer obtenir de meilleurs résultats. Cependant plusieurs problèmes nous empêchent de travailler sur cette solution. Premièrement le programme en lui-même est assez complexe et je n'ai pas réussi à faire tourner la partie entrainement du modèle. Deuxièmement il est très dur de modifié le dataset de mots puisque celui-ci est composé de mots associés à des éléments d'images que seul le modèle peut interprété. On a donc quasiment aucune maléabilité du dataset. Et troisièmement la fin du stage arrive trop vite pour que je prenne le temps de m'attarder dessus.
+J'ai testé ce modèle sur les peintures mais le résultat est ridiculement mauvais. Quasiment aucune description ne correspond à l'image comme on peut le voir en exemple de l'image \ref{fig:ex_neuraltalk}. Il faudrait donc ré-entrainer le modèle pour pouvoir espérer obtenir de meilleurs résultats. Cependant, plusieurs problèmes nous empêchent de travailler sur cette solution. Premièrement le programme en lui-même est assez complexe et je n'ai pas réussi à faire tourner la partie entrainement du modèle. Deuxièmement il est très dur de modifié le dataset de mots puisque celui-ci est composé de mots associés à des éléments d'images que seul le modèle peut interprété. On a donc quasiment aucune maléabilité du dataset. Et troisièmement la fin du stage arrive trop vite pour que je prenne le temps de m'attarder dessus.
 
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.7\linewidth]{datas/exemple_sous_titre.png}
-  \caption{Exemple de sous-titre descriptif généré par Neuraltalk2 (\emph{Création d'Adam}, Michel-Ange, 1512), "Un homme tiens un téléphone portable près de son oreille"}
+  \caption{Exemple de sous-titre descriptif généré par Neuraltalk2 (\emph{Création d'Adam}, Michel-Ange, 1512), "Un homme tient un téléphone portable près de son oreille"}
   \label{fig:ex_neuraltalk}
 \end{figure}
 
