@@ -17,7 +17,7 @@ Afin de rajouter des animations dans mon diaporama, notamment des vidéos pour f
 
 \section{Vidéo fondue}
 
-Le premier script permet de créer une vidéo avec une \textbf{transition en fondu} entre chaque image donnée en entrée du programme. L'intérêt d'un tel script est de le combiner au résultat d'un autre programme du gitlab qui donnait des cartes de chaleur de saillance. Ce sont des cartes de saillance en couleur où les zones saillantes sont représentées par des couleurs chaudes. Cela permet de faire évoluer la carte de chaleur de saillance en fonction du temps d'observation (voir Image \ref{fondu}). Pour ma présentation j'ai généré des cartes de chaleur au bout de 1 seconde d'observation, puis au bout de 2, etc. jusqu'à 5 secondes d'observation. La vidéo permettait donc d'enchainer les différentes cartes de chaleur avec un rendu propre avec pour but final d'analyser l'évolution de la saillance au cours du temps.
+Le premier script permet de créer une vidéo avec une \textbf{transition en fondu} entre chaque image donnée en entrée du programme. L'intérêt d'un tel script est de le combiner au résultat d'un autre programme du gitlab qui donnait des cartes de chaleur de saillance. Ce sont des cartes de saillance en couleur où les zones saillantes sont représentées par des couleurs chaudes. Cela permet de faire évoluer la carte de chaleur de saillance en fonction du temps d'observation (voir Image \ref{fondu}). Pour ma présentation, j'ai généré des cartes de chaleur au bout de 1 seconde d'observation, puis au bout de 2, etc. jusqu'à 5 secondes d'observation. La vidéo permettait donc d'enchainer les différentes cartes de chaleur avec un rendu propre avec pour but final d'analyser l'évolution de la saillance au cours du temps.
 
 \begin{figure}[!ht]
     \centering
@@ -42,7 +42,7 @@ Ce programme n'est pas très compliqué en soit mais il m'a permis de découvrir
 
 \section{Vidéo chemins visuels}
 
-Mon deuxième script consistait à afficher les chemins visuels réprésentés par des cercles et des lignes comme vu précédemment avec l'image \ref{ex_scanpath}. Cela permet de visualiser le mouvement des yeux de l'observateur et de pouvoir suivre son regard. Les défauts du résultat obtenu c'est qu'avec plusieurs observateurs l'image était rapidement surchargée par les chemins visuels qui se superposaient et les couleurs choisies aléatoirement pour différencier les observateurs pouvaient être très similaires.
+Mon deuxième script consistait à afficher les chemins visuels réprésentés par des cercles et des lignes comme vu précédemment avec l'image \ref{ex_scanpath}. Cela permet de visualiser le mouvement des yeux de l'observateur et de pouvoir suivre son regard. Les défauts du résultat obtenu c'est que lorsqu'il y avait plusieurs observateurs l'image était rapidement surchargée par les chemins visuels qui se superposaient et les couleurs choisies aléatoirement pour différencier les observateurs pouvaient être très similaires.
 
 \par
 J'ai donc fait évoluer ce script en y ajoutant de l'animation. J'ai rajouté une option qui permettait de générer une vidéo où chaque cercle (donc chaque fixation) s'affichait les uns après les autres. Cela permet donc d'avoir en fin de vidéo une image qui reste surchargée mais comme le spectateur a suivi le déroulement de l'animation, celui-ci est beaucoup moins confus. Ce point est aussi vrai pour l'inconvénient des couleurs trop similaires.
