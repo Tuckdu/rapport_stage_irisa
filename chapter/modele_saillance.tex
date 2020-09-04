@@ -152,42 +152,42 @@ Les résultats obtenus après l'entrainement sont plutôt bons. Les scores avant
     \centering
         \begin{tabular}{|l|l|l|l|l|}
                 \hline
-        Model & Style & CC~$\uparrow$ & NSS~$\uparrow$  & AUC-J~$\uparrow$\\
+        Modèle & Mouvement & CC~$\uparrow$ & NSS~$\uparrow$  & AUC-J~$\uparrow$\\
                 \hline
-        MLNET       & Fauvism & 0.600 & 1.553 & 0.825\\
-                    & Impressionism & 0.533 & 1.367 & 0.798\\
-                    & Pointillism & 0.536 & 1.306 & 0.802\\
-                    & Realism & \textbf{0.601} & \textbf{1.709} & \textbf{0.828}\\
-                    & Romanticism & 0.564 & 1.564 & 0.824\\
+        MLNET       & Fauvisme & 0.600 & 1.553 & 0.825\\
+                    & Impressionnisme & 0.533 & 1.367 & 0.798\\
+                    & Pointillisme & 0.536 & 1.306 & 0.802\\
+                    & Réalisme & \textbf{0.601} & \textbf{1.709} & \textbf{0.828}\\
+                    & Romantisme & 0.564 & 1.564 & 0.824\\
                 \hline
-        DeepGazeII  & Fauvism & 0.485 & 1.394 & 0.804\\
-                    & Impressionism & 0.460 & 1.305 & 0.796\\
-                    & Pointillism & 0.452 & 1.206 & 0.782\\
-                    & Realism & \textbf{0.492} & \textbf{1.609} & \textbf{0.823}\\
-                    & Romanticism & 0.462 & 1.444 & 0.807\\
+        DeepGazeII  & Fauvisme & 0.485 & 1.394 & 0.804\\
+                    & Impressionnisme & 0.460 & 1.305 & 0.796\\
+                    & Pointillisme & 0.452 & 1.206 & 0.782\\
+                    & Réalisme & \textbf{0.492} & \textbf{1.609} & \textbf{0.823}\\
+                    & Romantisme & 0.462 & 1.444 & 0.807\\
                 \hline
-        SALICON     & Fauvism & 0.498 & 1.271 & 0.820\\
-                    & Impressionism & 0.523 & 1.362 & 0.809\\
-                    & Pointillism & 0.497 & 1.234 & 0.809\\
-                    & Realism & \textbf{0.577} & \textbf{1.693} & \textbf{0.842}\\
-                    & Romanticism & 0.576 & 1.572 & 0.842\\
+        SALICON     & Fauvisme & 0.498 & 1.271 & 0.820\\
+                    & Impressionnisme & 0.523 & 1.362 & 0.809\\
+                    & Pointillisme & 0.497 & 1.234 & 0.809\\
+                    & Réalisme & \textbf{0.577} & \textbf{1.693} & \textbf{0.842}\\
+                    & Romantisme & 0.576 & 1.572 & 0.842\\
                 \hline
-        SAM ResNet  & Fauvism & \textbf{0.723} & 1.834 & 0.867\\
-                    & Impressionism & 0.648 & 1.659 & 0.845\\
-                    & Pointillism & 0.704 & 1.663 & 0.856\\
-                    & Realism & 0.701 & \textbf{2.015} & 0.862\\
-                    & Romanticism & 0.705 & 1.949 & \textbf{0.874}\\
+        SAM ResNet  & Fauvisme & \textbf{0.723} & 1.834 & 0.867\\
+                    & Impressionnisme & 0.648 & 1.659 & 0.845\\
+                    & Pointillisme & 0.704 & 1.663 & 0.856\\
+                    & Réalisme & 0.701 & \textbf{2.015} & 0.862\\
+                    & Romantisme & 0.705 & 1.949 & \textbf{0.874}\\
                 \hline
-        SAM VGG     & Fauvism & \textbf{0.647} & 1.635 & 0.849\\
-                    & Impressionism & 0.571 & 1.446 & 0.831\\
-                    & Pointillism & 0.620 & 1.464 & 0.837\\
-                    & Realism & 0.623 & \textbf{1.757} & 0.848\\
-                    & Romanticism & 0.621 & 1.707 & \textbf{0.857}\\
+        SAM VGG     & Fauvisme & \textbf{0.647} & 1.635 & 0.849\\
+                    & Impressionnisme & 0.571 & 1.446 & 0.831\\
+                    & Pointillisme & 0.620 & 1.464 & 0.837\\
+                    & Réalisme & 0.623 & \textbf{1.757} & 0.848\\
+                    & Romantisme & 0.621 & 1.707 & \textbf{0.857}\\
         \hline
         \end{tabular}
-    \caption{Performances des modeles de saillance profonds sur les 5 mouvements artistiques (meilleurs scores affichés en gras)}
+    \caption{Performances des modèles de saillance profonds sur les 5 mouvements artistiques (meilleurs scores affichés en gras)}
     \label{tab:scoresmouvement}
 \end{table}
 
 \par
-Cependant il est important de noté que les mouvements artistiques des peintures influencent le résultat du modèle de saillance. En effet les résultats sont bien meilleurs sur des peintures appartenant au mouvement du Réalisme ou du Romantisme que celles du Pointillisme ou de l'Impressionisme comme on peut le voir dans le tableau \ref{tab:scoresmouvement}. Cela est dû au fait que le modèle est construit et entrainé originellement pour des scènes naturelles qui sont très similaires aux peintures réalistes. Pour améliorer les résultats, je pense qu'il faudrait ré-entrainer entièrement le modèle avec une plus grande base de données et avoir plus de diversité avec plus de styles et de mouvements différents. C'est un travail qui demande beaucoup de temps et d'organisation notamment pour la collecte de données.
+Cependant il est important de noté que les mouvements artistiques des peintures influencent le résultat du modèle de saillance. En effet les résultats sont bien meilleurs sur des peintures appartenant au mouvement du Réalisme ou du Romantisme que celles du Pointillisme ou de l'Impressionnisme comme on peut le voir dans le tableau \ref{tab:scoresmouvement}. Cela est dû au fait que le modèle est construit et entrainé originellement pour des scènes naturelles qui sont très similaires aux peintures réalistes. Pour améliorer les résultats, je pense qu'il faudrait ré-entrainer entièrement le modèle avec une plus grande base de données et avoir plus de diversité avec plus de styles et de mouvements différents. C'est un travail qui demande beaucoup de temps et d'organisation notamment pour la collecte de données.
